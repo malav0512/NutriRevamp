@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Link to your CSS file -->
+    <title>Calorie_Meter_Home_Page</title>
+  </head>
+  <body>
+    <!-- Navigation Bar (Top Bar) -->
+    <header>
+      <nav class="navbar">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#fitness">Fitness</a></li>
+          <li><a href="#tips">Tips</a></li>
+          <li><a href="#feedback">Feedback</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Home Section -->
+    <section id="home" class="section home-section">
+      <div class="content">
+        <h1>Welcome to <span class="highlight">NutriRevamp</span></h1>
+        <p class="tagline">
+          Your partner in achieving a healthier, fitter you.
+        </p>
+        <a href="#fitness" class="cta-btn">Explore Now</a>
+      </div>
+      <div class="hero-image">
+        <img
+          src="kimzy-nanney-LNDgBERq8Q0-unsplash.jpg"
+          alt="Healthy food and lifestyle"
+        />
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+      <h2>About NutriRevamp</h2>
+      <p>
+        NutriRevamp is your ultimate guide to tracking nutrition, setting
+        fitness goals, and maintaining a healthy lifestyle. We provide
+        personalized insights and tips to help you stay on track.
+      </p>
+      <img src="cala-w6ftFbPCs9I-unsplash.jpg" alt="About NutriRevamp" />
+    </section>
+
+    <!-- Fitness Section -->
+    <section id="fitness" class="section fitness-section">
+      <div class="content">
+        <h2>Fitness Goals</h2>
+        <p>Select a food item to view its nutritional details:</p>
+
+        <!-- Food Selection -->
+        <div class="form-group">
+          <label for="food-category">Category:</label>
+          <input
+            type="text"
+            id="food-category"
+            placeholder="Type a category..."
+            autocomplete="off"
+          />
+          <div id="category-suggestions" class="suggestions"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="food-description">Description:</label>
+          <select id="food-description">
+            <option value="">Select a description</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="food-quantity">Quantity (in grams):</label>
+          <input type="number" id="food-quantity" value="100" min="1" />
+        </div>
+        <button id="fetch-nutrition" class="btn">Add Food Item</button>
+        <!-- Individual Nutritional Information -->
+        <div id="nutrition-info" class="nutrition-info">
+          <h3>Individual Nutritional Details:</h3>
+          <!-- Dynamic content will be injected here -->
+        </div>
+
+        <!-- Total Nutritional Information -->
+        <div id="total-nutrition" class="total-nutrition">
+          <h3>Total Nutritional Info:</h3>
+          <!-- Dynamic content will be injected here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section id="tips" class="section tips-section">
+      <div class="content">
+        <h2>Nutrition Tips</h2>
+        <div class="tips-container">
+          <div class="tip">
+            <h3>Eat Whole Foods</h3>
+            <p>
+              Focus on nutrient-dense foods like fruits, vegetables, and lean
+              proteins.
+            </p>
+          </div>
+          <div class="tip">
+            <h3>Stay Hydrated</h3>
+            <p>Drink plenty of water throughout the day to stay energized.</p>
+          </div>
+          <div class="tip">
+            <h3>Practice Portion Control</h3>
+            <p>
+              Keep track of your portion sizes to maintain a healthy balance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section id="feedback" class="section feedback-section">
+      <div class="content">
+        <h2>We Value Your Feedback</h2>
+        <p>
+          Share your experience with Nutrirevamp and help us improve our
+          services!
+        </p>
+        <form>
+          <textarea
+            placeholder="Enter your feedback here..."
+            rows="4"
+          ></textarea>
+          <button type="submit" class="btn">Submit Feedback</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section id="cta" class="section cta-section">
+      <h2>Join NutriRevamp Today!</h2>
+      <p>Start your journey to a healthier you with our tools and insights.</p>
+      <a href="signup.html" class="cta-btn">Sign Up Now</a>
+    </section>
+
+    <footer>
+      <p>&copy; 2024 NutriRevamp.All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
