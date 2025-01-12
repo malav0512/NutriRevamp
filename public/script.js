@@ -183,3 +183,57 @@ function removeItem(index) {
   // Update the nutritional display
   updateNutritionDisplay();
 }
+// Initialize weight input functionality
+function initializeWeightInput() {
+  const weightInput = document.getElementById("weight-input");
+  const weightUnit = document.getElementById("weight-unit");
+  const weightOutput = document.getElementById("weight-output");
+
+  // Update the output dynamically as the user types or changes the unit
+  weightInput.addEventListener("input", updateWeightOutput);
+  weightUnit.addEventListener("change", handleUnitChange);
+
+  function updateWeightOutput() {
+    const weightValue = weightInput.value;
+    const unit = weightUnit.value;
+
+    if (weightValue) {
+      weightOutput.textContent = ``;
+    } else {
+      weightOutput.textContent = "";
+    }
+  }
+
+  function handleUnitChange() {
+    const weightValue = parseFloat(weightInput.value);
+    const currentUnit = weightUnit.value;
+
+    if (!isNaN(weightValue)) {
+      let convertedValue;
+      if (currentUnit === "kg") {
+        // Convert kg to lbs
+        convertedValue = (weightValue * 2.20462).toFixed(2);
+        weightInput.value = convertedValue;  // Update the input box value
+        weightOutput.textContent = ``;
+      } else if (currentUnit === "lbs") {
+        // Convert lbs to kg
+        convertedValue = (weightValue / 2.20462).toFixed(2);
+        weightInput.value = convertedValue;  // Update the input box value
+        weightOutput.textContent = ``;
+      }
+    } else {
+      weightOutput.textContent = "";
+    }
+  }
+}
+
+// Call the function to initialize the weight input functionality
+initializeWeightInput();
+
+function showContent(type) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.add('hidden'));
+
+            const selectedSection = document.getElementById(`${type}-content`);
+            selectedSection.classList.remove('hidden');
+        }

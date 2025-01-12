@@ -77,6 +77,27 @@
           <label for="food-quantity">Quantity (in grams):</label>
           <input type="number" id="food-quantity" value="100" min="1" />
         </div>
+        <!-- Weight Input Section -->
+        <div class="form-group">
+          <label for="weight-input">Weight:</label>
+          <div class="weight-input-container">
+            <input
+              type="number"
+              id="weight-input"
+              placeholder="Enter weight"
+              min="0"
+              step="0.1"
+            />
+            <select id="weight-unit">
+              <option value="kg">Kilograms (kg)</option>
+              <option value="lbs">Pounds (lbs)</option>
+            </select>
+          </div>
+          <p
+            id="weight-output"
+            style="margin-top: 10px; font-size: 16px; color: #555"
+          ></p>
+        </div>
         <button id="fetch-nutrition" class="btn">Add Food Item</button>
         <!-- Individual Nutritional Information -->
         <div id="nutrition-info" class="nutrition-info">
@@ -97,23 +118,289 @@
       <div class="content">
         <h2>Nutrition Tips</h2>
         <div class="tips-container">
-          <div class="tip">
-            <h3>Eat Whole Foods</h3>
+          <div class="tips-container">
+            <div class="tips-column" onclick="showContent('protein')">
+              Protein
+            </div>
+            <div class="tips-column" onclick="showContent('fats')">Fats</div>
+            <div class="tips-column" onclick="showContent('carbs')">
+              Carbohydrates
+            </div>
+          </div>
+          <div id="protein-content" class="content-section">
+            <h2>Protein</h2>
+            <div class="image-section">
+              <img
+                src="mariana-medvedeva-usfIE5Yc7PY-unsplash.jpg"
+                alt="Descriptive text"
+                class="responsive-image"
+              />
+            </div>
             <p>
-              Focus on nutrient-dense foods like fruits, vegetables, and lean
-              proteins.
+              Protein is essential to good health. The very origin of the word —
+              from the Greek <em>protos</em>, meaning "first" — reflects
+              protein's top-shelf status in human nutrition. You need it to put
+              meat on your bones and to make hair, blood, connective tissue,
+              antibodies, enzymes, and more. It's common for athletes and
+              bodybuilders to wolf down extra protein to bulk up. But the
+              message the rest of us often get is that our daily protein intake
+              is too high.
+            </p>
+            <h3>Kwashiorkor</h3>
+            <p>
+              Kwashiorkor is a type of malnutrition characterized by severe
+              protein deficiency. It causes fluid retention and a swollen,
+              distended abdomen. Kwashiorkor most commonly affects children,
+              particularly in developing countries with high levels of poverty
+              and food insecurity. People with kwashiorkor may have food to eat,
+              but not enough protein.
+            </p>
+            <h3>How much protein do you need?</h3>
+            <ul>
+              <li>
+                Protein should account for 10% to 35% of your calories. So, if
+                your daily needs are 2,000 calories, that's 200-700 calories
+                from protein or 50-175 grams.
+              </li>
+              <li>
+                The recommended dietary allowance to prevent deficiency for an
+                average sedentary adult is 0.8 grams per kilogram of body
+                weight.
+              </li>
+              <li>
+                For those over age 40-50, protein needs increase to about 1-1.2
+                grams per kilogram.
+              </li>
+              <li>
+                People who exercise regularly or lift weights need about 1.1-1.7
+                grams per kilogram.
+              </li>
+            </ul>
+            <h3>Daily protein intake for women</h3>
+            <p>
+              For a 50-year-old woman who weighs 140 pounds and is sedentary
+              (doesn't exercise), that translates into 53 grams of protein a
+              day. During pregnancy, protein needs of women go up. Experts
+              recommend 75 to 100 grams of protein a day for the developing
+              fetal tissue, as well as the enlarging placenta, breasts, and
+              blood supply. You should check with your doctor on your specific
+              protein needs.
+            </p>
+            <h3>Does protein have any negative health effects?</h3>
+            <p>
+              Some research suggests casual links between high protein diets and
+              kidney function impairments. However, there is no evidence to
+              suggest a direct cause and effect between the two. Further
+              research has shown that following a high-protein diet can
+              aggravate preexisting chronic kidney disease. People with
+              preexisting kidney conditions should consult their doctor before
+              drastically changing their protein intake.
+            </p>
+            <p>
+              Overall, there’s no evidence that a reasonably high protein intake
+              has any adverse effects in healthy people trying to optimize their
+              health.
+            </p>
+            <h3>How to get enough protein in your diet</h3>
+            <p>
+              There is a broad range of foods that are high in protein. These
+              include:
+            </p>
+            <ul>
+              <li>Tofu, tempeh, and other meat substitutes</li>
+              <li>Lean meats</li>
+              <li>Fish</li>
+              <li>Eggs</li>
+              <li>Milk</li>
+              <li>Greek yogurt</li>
+              <li>Quinoa</li>
+              <li>Legumes</li>
+              <li>Nuts</li>
+            </ul>
+            <p>
+              Most people generally don’t need to track their protein intake. If
+              you’re healthy and trying to stay that way, simply eating quality
+              protein sources with most of your meals, along with nutritious
+              plant foods, should bring your intake to an optimal range.
             </p>
           </div>
-          <div class="tip">
-            <h3>Stay Hydrated</h3>
-            <p>Drink plenty of water throughout the day to stay energized.</p>
-          </div>
-          <div class="tip">
-            <h3>Practice Portion Control</h3>
+          <!-- Fats Content -->
+          <div id="fats-content" class="content-section hidden">
+            <h2>Fats</h2>
+            <div class="image-section">
+              <img
+                src="louis-hansel-6gbr24z3H5c-unsplash.jpg"
+                alt="Descriptive text"
+                class="responsive-image"
+              />
+            </div>
             <p>
-              Keep track of your portion sizes to maintain a healthy balance.
+              According to current dietary guidelines, a healthy adult should
+              consume between 20-35% of their daily calories from fat, which
+              translates to roughly 0.5-1 gram of fat per kilogram of body
+              weight depending on their activity level and overall calorie
+              needs.
             </p>
+            <h3>Does your body need fat?</h3>
+            <p>
+              Fat is an important source of energy you get from the food you
+              eat. Your body needs fat to grow cells, protect your organs, and
+              absorb fat-soluble vitamins...
+            </p>
+            <h3>Types of Fat</h3>
+            <h4>Saturated Fats</h4>
+            <p>
+              Saturated fats are found in animal products like meat and full-fat
+              dairy. They also occur in tropical oils like palm and coconut...
+            </p>
+            <ul>
+              <li>Meats like beef, lamb, and pork</li>
+              <li>Processed meats like bacon and sausage</li>
+              <li>Chicken skin</li>
+              <li>Full-fat dairy products like cream, cheese, and butter</li>
+              <li>Tropical oils, like coconut and palm</li>
+            </ul>
+            <h4>Unsaturated Fats</h4>
+            <p>
+              Unsaturated fats are typically liquid at room temperature. They
+              come from plant sources and fatty fish, like salmon...
+            </p>
+            <ul>
+              <li>
+                Nontropical vegetable oils, like olive, canola, and soybean
+              </li>
+              <li>Fatty fish, like bluefin tuna, salmon, and sardines</li>
+              <li>
+                Nuts and seeds like walnuts, flaxseeds, and sunflower seeds
+              </li>
+              <li>Other foods like avocados and peanut butter</li>
+            </ul>
+            <h4>Trans Fats</h4>
+            <p>
+              Trans fats are created artificially and also occur naturally in
+              small amounts in some animal products...
+            </p>
+            <h3>Diets Low in Saturated Fat</h3>
+            <p>
+              Following an eating plan that focuses on heart-healthy foods can
+              help you limit your saturated fat intake...
+            </p>
+            <h4>Mediterranean Diet</h4>
+            <p>
+              The Mediterranean diet is based on the traditional eating patterns
+              of countries that border the Mediterranean Sea...
+            </p>
+            <h4>DASH Eating Plan</h4>
+            <p>
+              DASH (Dietary Approaches to Stop Hypertension) is an eating plan
+              created to improve heart health...
+            </p>
+            <h3>Health Risks of Excess Fat Intake</h3>
+            <ul>
+              <li>
+                <strong>Weight Gain:</strong> Fat is high in calories, with 9
+                calories per gram, which is more than twice the amount found in
+                carbohydrates and protein.
+              </li>
+              <li>
+                <strong>Heart Disease and Stroke:</strong> Eating too much
+                saturated fat can raise your LDL (bad) cholesterol.
+              </li>
+              <li>
+                <strong>Cancer:</strong> Some studies suggest that high-fat
+                diets may be linked to several cancers.
+              </li>
+              <li>
+                <strong>Digestive Distress:</strong> Too much fat can cause
+                bloating, gas, and loose stools.
+              </li>
+            </ul>
           </div>
+        </div>
+        <!-- Carbohydrates Content -->
+        <div id="carbs-content" class="content-section hidden">
+          <h2>Carbohydrates</h2>
+          <div class="image-section">
+            <img
+              src="mette-van-der-linden-nVH-5t4LxmY-unsplash.jpg"
+              alt="Descriptive text"
+              class="responsive-image"
+            />
+          </div>
+
+          <p>
+            Moderately active individuals should aim for 5-7 grams of
+            carbohydrates per kilogram of body weight.
+          </p>
+          <h3>Daily Calorie Intake</h3>
+          <p>
+            The Dietary Guidelines for Americans recommend that carbohydrates
+            make up 45–65% of your total daily calories. For example, if you eat
+            2,000 calories per day, you should consume 225–325 grams of
+            carbohydrates.
+          </p>
+          <h3>Weight Loss</h3>
+          <p>
+            If you're trying to lose weight, you can try eating 100–150 grams of
+            carbohydrates per day. You can also try breaking up your
+            carbohydrates evenly throughout the day, with 40–50 grams per meal.
+          </p>
+          <h3>Understanding Carbohydrates</h3>
+          <p>
+            Carbohydrates are a type of macronutrient found in many foods and
+            beverages. Most carbs occur naturally in plant-based foods, such as
+            grains. Food manufacturers also add carbs to processed foods in the
+            form of starch or added sugar.
+          </p>
+          <ul>
+            <li>Fruits</li>
+            <li>Vegetables</li>
+            <li>Milk</li>
+            <li>Nuts</li>
+            <li>Grains</li>
+            <li>Seeds</li>
+            <li>Beans, peas, and lentils</li>
+          </ul>
+          <h3>Types of Carbohydrates</h3>
+          <ul>
+            <li>
+              <strong>Sugar:</strong> The simplest form of carbohydrate,
+              naturally found in fruits, vegetables, and milk.
+            </li>
+            <li>
+              <strong>Starch:</strong> A complex carbohydrate found in
+              vegetables, grains, and beans.
+            </li>
+            <li>
+              <strong>Fiber:</strong> Essential for digestive health, found in
+              fruits, vegetables, and whole grains.
+            </li>
+          </ul>
+          <h3>Carbohydrates and Your Health</h3>
+          <p>
+            Carbohydrates are vital for energy, disease prevention, and weight
+            control. They are the body's main fuel source, breaking down into
+            simple sugars during digestion and providing glucose for energy.
+          </p>
+          <h3>Protecting Against Disease</h3>
+          <p>
+            Whole grains and dietary fiber help lower the risk of heart disease,
+            stroke, obesity, and certain cancers. Fiber is also essential for
+            optimal digestive health.
+          </p>
+          <h3>Controlling Weight</h3>
+          <p>
+            Eating plenty of fruits, vegetables, and whole grains can help
+            control weight by promoting fullness with fewer calories.
+          </p>
+          <h3>Choose Your Carbohydrates Wisely</h3>
+          <ul>
+            <li>Focus on fiber-rich fruits and vegetables.</li>
+            <li>Choose whole grains over refined grains.</li>
+            <li>Stick to low-fat dairy products.</li>
+            <li>Eat more beans, peas, and lentils.</li>
+            <li>Limit added sugars.</li>
+          </ul>
         </div>
       </div>
     </section>
