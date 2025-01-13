@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Fetch categories and populate the category dropdown
   fetchCategories();
+  initializeWeightInput();
 });
 
 let foodItems = []; // Array to store multiple food items
@@ -84,7 +85,7 @@ function fetchCategories() {
   document.getElementById("fetch-nutrition").addEventListener("click", () => {
     const category = document.getElementById("food-category").value;
     const description = document.getElementById("food-description").value;
-     const quantity = parseFloat(document.getElementById("food-quantity").value);
+    const quantity = parseFloat(document.getElementById("food-quantity").value);
     // Validate inputs
     if (!category || !description || isNaN(quantity) || quantity <= 0) {
     alert("Please select a category, description, and enter a valid quantity.");
@@ -193,15 +194,13 @@ function initializeWeightInput() {
   weightInput.addEventListener("input", updateWeightOutput);
   weightUnit.addEventListener("change", handleUnitChange);
 
-  function updateWeightOutput() {
+  function updateWeightOutput(weightInput, weightUnit) {
     const weightValue = weightInput.value;
     const unit = weightUnit.value;
 
-    if (weightValue) {
-      weightOutput.textContent = ``;
-    } else {
-      weightOutput.textContent = "";
-    }
+     if (!isNaN(weightValue)) {
+    weightInput.value = unit === "kg" ? weightValue : (weightValue * 2.20462).toFixed(2);
+  }
   }
 
   function handleUnitChange() {
@@ -237,3 +236,49 @@ function showContent(type) {
             const selectedSection = document.getElementById(`${type}-content`);
             selectedSection.classList.remove('hidden');
         }
+    document.getElementById('feedbackForm').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    const feedback = event.target.feedback.value;
+
+    try {
+      // Send feedback to the server
+      const response = await fetch('http://127.0.0.1:3000/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ feedback }),
+      });
+
+      if (response.ok) {
+        alert('Your feedback submitted successfully!');
+        window.location.href = 'http://127.0.0.1:5500'; // Redirect to the home page
+      } else {
+        alert('Failed to submit feedback. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again.');
+    }
+  });
+  document.getElementById("nutritionForm").addEventListener("submit", function(event) {
+    event.preventDefault();  // Prevent form from submitting
+
+    // Get user inputs
+    const weight = parseFloat(document.getElementById("weight").value);
+    const dailyCalories = parseFloat(document.getElementById("calories").value);
+
+    // Calculate nutritional values
+    const protein = 0.8 * weight;  // Protein = 0.8 * weight (kg)
+    const fats = 0.25 * dailyCalories;  // Fats = 0.25 * total daily calories
+    const carbohydrates = 0.7 * weight;  // Carbs = 0.7 * weight (kg)
+
+    // Display results
+    document.getElementById("result").innerHTML = `
+        <h2>Your Nutritional Intake:</h2>
+        <p><strong>Protein:</strong> ${protein.toFixed(2)} g</p>
+        <p><strong>Fats:</strong> ${fats.toFixed(2)} g</p>
+        <p><strong>Carbohydrates:</strong> ${carbohydrates.toFixed(2)} g</p>
+    `;
+});

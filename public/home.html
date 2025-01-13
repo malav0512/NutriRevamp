@@ -90,7 +90,6 @@
             />
             <select id="weight-unit">
               <option value="kg">Kilograms (kg)</option>
-              <option value="lbs">Pounds (lbs)</option>
             </select>
           </div>
           <p
@@ -110,6 +109,13 @@
           <h3>Total Nutritional Info:</h3>
           <!-- Dynamic content will be injected here -->
         </div>
+         <!-- Nutritional Info Box -->
+    <div id="nutrition-box" class="nutrition-box">
+      <h3>Calculated Nutritional Values:</h3>
+      <p><strong>Protein:</strong> <span id="protein-value">0</span> g</p>
+      <p><strong>Fats:</strong> <span id="fats-value">0</span> g</p>
+      <p><strong>Carbohydrates:</strong> <span id="carbs-value">0</span> g</p>
+    </div>
       </div>
     </section>
 
@@ -413,23 +419,16 @@
           Share your experience with Nutrirevamp and help us improve our
           services!
         </p>
-        <form>
-          <textarea
-            placeholder="Enter your feedback here..."
-            rows="4"
-          ></textarea>
-          <button type="submit" class="btn">Submit Feedback</button>
-        </form>
+        <form action="http://127.0.0.1:3000/feedback" method="POST">
+  <textarea
+    placeholder="Enter your feedback here..."
+    rows="4"
+    name="feedback"
+  ></textarea>
+  <button type="submit" class="btn">Submit Feedback</button>
+</form>
       </div>
     </section>
-
-    <!-- Call-to-Action Section -->
-    <section id="cta" class="section cta-section">
-      <h2>Join NutriRevamp Today!</h2>
-      <p>Start your journey to a healthier you with our tools and insights.</p>
-      <a href="signup.html" class="cta-btn">Sign Up Now</a>
-    </section>
-
     <footer>
       <p>&copy; 2024 NutriRevamp.All Rights Reserved.</p>
     </footer>

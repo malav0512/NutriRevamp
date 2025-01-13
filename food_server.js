@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const port=3000;
 const app = express();
+const path = require('path');
+const fs = require('fs');
 const cors = require('cors');
 app.use(cors());
 
@@ -161,7 +163,20 @@ app.post('/calculate-nutrition', (req, res) => {
     res.json(calculatedNutrition);
   });
 });
+// Feedback route
+app.post('/feedback', (req, res) => {
+    const feedback = req.body.feedback;
+    const feedbackFilePath = path.join(__dirname, 'feedback.txt');
+
+    fs.appendFile(feedbackFilePath, `${feedback}\n`, (err) => {
+        if (err) {
+           console.error('Error saving feedback:', err);
+        return res.status(500).send('Error saving feedback'); // First response
+        } 
+         res.send('Feedback submitted successfully!');
+    });
+});
 // Start the server
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server running on http://localhost:${port}`);
 });
