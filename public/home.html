@@ -109,13 +109,18 @@
           <h3>Total Nutritional Info:</h3>
           <!-- Dynamic content will be injected here -->
         </div>
-         <!-- Nutritional Info Box -->
-    <div id="nutrition-box" class="nutrition-box">
-      <h3>Calculated Nutritional Values:</h3>
-      <p><strong>Protein:</strong> <span id="protein-value">0</span> g</p>
-      <p><strong>Fats:</strong> <span id="fats-value">0</span> g</p>
-      <p><strong>Carbohydrates:</strong> <span id="carbs-value">0</span> g</p>
-    </div>
+        <!-- Nutritional Info Box -->
+        <div id="nutrition-box" class="nutrition-box">
+          <h3>Calculated Nutritional Values:</h3>
+          <button id="nutritional-info" class="btn">Show details</button>
+          <div>
+            <p><strong>Protein:</strong> <span id="protein-value">0</span> g</p>
+            <p><strong>Fats:</strong> <span id="fats-value">0</span> g</p>
+            <p>
+              <strong>Carbohydrates:</strong> <span id="carbs-value">0</span> g
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -420,13 +425,13 @@
           services!
         </p>
         <form action="http://127.0.0.1:3000/feedback" method="POST">
-  <textarea
-    placeholder="Enter your feedback here..."
-    rows="4"
-    name="feedback"
-  ></textarea>
-  <button type="submit" class="btn">Submit Feedback</button>
-</form>
+          <textarea
+            placeholder="Enter your feedback here..."
+            rows="4"
+            name="feedback"
+          ></textarea>
+          <button type="submit" class="btn">Submit Feedback</button>
+        </form>
       </div>
     </section>
     <footer>

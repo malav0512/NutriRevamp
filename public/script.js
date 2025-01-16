@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeWeightInput();
 });
 
-let foodItems = []; // Array to store multiple food items
+let foodItems = [];
+let totalCalories=0; // Array to store multiple food items
 
 function fetchCategories() {
   fetch("http://localhost:3000/categories")
@@ -121,6 +122,7 @@ function fetchCategories() {
 
         // Update UI with the new food item
         updateNutritionDisplay();
+        
       } else {
         alert("No data found for the given inputs.");
       }
@@ -167,7 +169,7 @@ function updateNutritionDisplay() {
     },
     { protein: 0, carbs: 0, fats: 0, calories: 0 }
   );
-
+  totalCalories = total.calories;
   // Display total nutritional values
   totalNutritionDiv.innerHTML += `
     <p><strong>Total Protein:</strong> ${total.protein.toFixed(2)}g</p>
@@ -187,43 +189,12 @@ function removeItem(index) {
 // Initialize weight input functionality
 function initializeWeightInput() {
   const weightInput = document.getElementById("weight-input");
-  const weightUnit = document.getElementById("weight-unit");
-  const weightOutput = document.getElementById("weight-output");
-
-  // Update the output dynamically as the user types or changes the unit
-  weightInput.addEventListener("input", updateWeightOutput);
-  weightUnit.addEventListener("change", handleUnitChange);
-
-  function updateWeightOutput(weightInput, weightUnit) {
-    const weightValue = weightInput.value;
-    const unit = weightUnit.value;
-
-     if (!isNaN(weightValue)) {
-    weightInput.value = unit === "kg" ? weightValue : (weightValue * 2.20462).toFixed(2);
-  }
-  }
-
-  function handleUnitChange() {
+  weightInput.addEventListener("input", () => {
     const weightValue = parseFloat(weightInput.value);
-    const currentUnit = weightUnit.value;
-
-    if (!isNaN(weightValue)) {
-      let convertedValue;
-      if (currentUnit === "kg") {
-        // Convert kg to lbs
-        convertedValue = (weightValue * 2.20462).toFixed(2);
-        weightInput.value = convertedValue;  // Update the input box value
-        weightOutput.textContent = ``;
-      } else if (currentUnit === "lbs") {
-        // Convert lbs to kg
-        convertedValue = (weightValue / 2.20462).toFixed(2);
-        weightInput.value = convertedValue;  // Update the input box value
-        weightOutput.textContent = ``;
-      }
-    } else {
-      weightOutput.textContent = "";
+    if (isNaN(weightValue) || weightValue <= 0) {
+      console.error("Please enter a valid weight in kilograms.");
     }
-  }
+  });
 }
 
 // Call the function to initialize the weight input functionality
@@ -262,23 +233,47 @@ function showContent(type) {
       alert('An error occurred. Please try again.');
     }
   });
-  document.getElementById("nutritionForm").addEventListener("submit", function(event) {
-    event.preventDefault();  // Prevent form from submitting
+   // Ensure totalCalories is globally defined and updated dynamically
 
-    // Get user inputs
-    const weight = parseFloat(document.getElementById("weight").value);
-    const dailyCalories = parseFloat(document.getElementById("calories").value);
 
-    // Calculate nutritional values
-    const protein = 0.8 * weight;  // Protein = 0.8 * weight (kg)
-    const fats = 0.25 * dailyCalories;  // Fats = 0.25 * total daily calories
-    const carbohydrates = 0.7 * weight;  // Carbs = 0.7 * weight (kg)
+   document.addEventListener("DOMContentLoaded", () => {
 
-    // Display results
-    document.getElementById("result").innerHTML = `
-        <h2>Your Nutritional Intake:</h2>
-        <p><strong>Protein:</strong> ${protein.toFixed(2)} g</p>
-        <p><strong>Fats:</strong> ${fats.toFixed(2)} g</p>
-        <p><strong>Carbohydrates:</strong> ${carbohydrates.toFixed(2)} g</p>
-    `;
+document.getElementById("nutritional-info").addEventListener("click",()=> {
+   // Prevent form from submitting
+console.log("Show details button clicked");
+  // Get user inputs
+  const weightInput = document.getElementById("weight-input").value;
+
+  // Parse inputs as numbers
+  const weight = parseFloat(weightInput); 
+    console.log("Weight entered:", weight);// Weight in kilograms
+
+  // Validate inputs
+  if (isNaN(weight) || weight <= 0) {
+    alert("Please enter a valid weight in kilograms.");
+    return;
+  }
+ console.log("Total calories:", totalCalories=2000);
+  if (totalCalories <= 0) {
+    alert("Total calories are not available or invalid. Please add food items first.");
+    return;
+  }
+
+  // Calculate nutritional values
+  const protein = 0.8 * weight; // Protein = 0.8g per kg of body weight
+  const fats = (0.25 * totalCalories) / 9; // Fats = 25% of daily calories (1g fat = 9 kcal)
+  const carbohydrates = (0.5 * totalCalories) / 4; // Carbs = 50% of daily calories (1g carb = 4 kcal)
+
+  // Log calculated values for debugging
+  console.log("Weight:", weight, "kg");
+  console.log("Total Calories:", totalCalories, "kcal");
+  console.log("Protein:", protein.toFixed(2), "g");
+  console.log("Fats:", fats.toFixed(2), "g");
+  console.log("Carbohydrates:", carbohydrates.toFixed(2), "g");
+
+  // Update the "Calculated Nutritional Values" section
+  document.getElementById("protein-value").textContent = protein.toFixed(2);
+  document.getElementById("fats-value").textContent = fats.toFixed(2);
+  document.getElementById("carbs-value").textContent = carbohydrates.toFixed(2);
+});
 });
