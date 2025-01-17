@@ -111,7 +111,7 @@
         </div>
         <!-- Nutritional Info Box -->
         <div id="nutrition-box" class="nutrition-box">
-          <h3>Calculated Nutritional Values:</h3>
+          <h3>Approximate Nutritional Values:</h3>
           <button id="nutritional-info" class="btn">Show details</button>
           <div>
             <p><strong>Protein:</strong> <span id="protein-value">0</span> g</p>
@@ -424,7 +424,11 @@
           Share your experience with Nutrirevamp and help us improve our
           services!
         </p>
-        <form action="http://127.0.0.1:3000/feedback" method="POST">
+        <form
+          id="feedback-form"
+          action="http://127.0.0.1:3000/feedback"
+          method="POST"
+        >
           <textarea
             placeholder="Enter your feedback here..."
             rows="4"
