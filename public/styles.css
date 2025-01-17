@@ -24,6 +24,7 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .navbar ul li {
@@ -52,6 +53,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     max-width: 90%;
+    box-sizing: border-box;
 }
 
 .section:nth-child(even) {
@@ -72,6 +74,16 @@ body {
     margin-bottom: 20px;
     line-height:1.8;
     
+}
+
+/* General image styling */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Form Styling */
@@ -161,16 +173,6 @@ button:hover {
     margin: 5px 0;
 }
 
-/* General image styling */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
 /* Specific styling for the hero image */
 .hero-image img {
     max-height: 300%;
@@ -214,6 +216,13 @@ img {
     border-radius: 10px;
     background-color: #f4f4f4;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hero-image img{
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
 }
 
 /* Hero Content */
@@ -277,20 +286,6 @@ textarea {
     font-size: 1rem;
 }
 
-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #45a049;
-}
 /* Footer Styling */ 
 footer {
     background-color: #333;
@@ -307,13 +302,26 @@ html {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    
+    .navbar ul {
+            flex-direction: column;
+    }
+
     .tips-container {
         flex-direction: column;
         align-items: center;
     }
 
+    .section {
+    padding: 40px 10px;
+    }
+
     .hero-section {
         padding: 30px 10px;
+    }
+
+    .hero-image img {
+            height: auto;
     }
 
     .cta-btn {
@@ -422,4 +430,24 @@ ul li {
 
 .nutrition-box strong {
     font-weight: bold;
+}
+@media (max-width: 480px) {
+
+    .section h1,
+    .section h2 {
+        font-size: 1.5rem;
+    }
+
+    .section p {
+        font-size: 1rem;
+    }
+
+    .tips-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tip {
+        max-width: 90%;
+    }
 }
