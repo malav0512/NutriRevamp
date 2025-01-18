@@ -85,6 +85,28 @@ img {
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+/* Fitness Section Styling */
+.fitness-section {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.fitness-section h2 {
+    color: #4CAF50;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.fitness-section p {
+    color: #555;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
 
 /* Form Styling */
 .form-group {
@@ -93,10 +115,28 @@ img {
     max-width: 600px;
 }
 
-label {
+.form-group label {
     font-weight: bold;
+    color: #333;
     display: block;
     margin-bottom: 5px;
+}
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #4CAF50;
+    outline: none;
 }
 
 input[type="text"],
@@ -149,7 +189,9 @@ button:hover {
 }
 
 /* Nutrition Info Styling */
-.nutrition-info {
+.nutrition-info,
+.total-nutrition,
+.nutrition-box {
     margin-top: 20px;
     padding: 20px;
     background-color: #fff;
@@ -161,13 +203,22 @@ button:hover {
     margin-right: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+* Nutritional Info Styling */ 
 
-.nutrition-info h3 {
+.nutrition-box strong {
+    font-weight: bold;
+}
+
+.nutrition-info h3,
+.total-nutrition h3,
+.nutrition-box h3{
     margin-bottom: 15px;
     color: #333;
 }
 
-.nutrition-info p {
+.nutrition-info p,
+.total-nutrition p,
+.nutrition-box p {
     font-size: 16px;
     color: #555;
     margin: 5px 0;
@@ -246,15 +297,22 @@ button:hover {
 }
 
 .tip {
-    background-color: #fff;
+    padding: 15px 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 20px;
+    cursor:pointer;
     max-width: 300px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .tip:hover {
+    background-color: #4CAF50;
+    color: #ffffff;
     transform: scale(1.05);
 }
 
@@ -269,12 +327,82 @@ button:hover {
     font-size: 1rem;
     line-height: 1.6;
 }
+/* General Styling for Tips Section */
+#tips {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+#tips h2 {
+    font-size: 2.5rem;
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 40px;
+}
 
 /* Feedback Form */
 .feedback-section form {
     max-width: 600px;
     margin: 20px auto;
     text-align: left;
+}
+.feedback-section {
+    background-color: #f9f9f9;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 2px solid #e0e0e0;
+}
+
+.feedback-section h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.feedback-section p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+#feedback-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#feedback-form textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    resize: none;
+    margin-bottom: 15px;
+}
+
+#feedback-form textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#feedback-form .btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#feedback-form .btn:hover {
+    background-color: #0056b3;
 }
 
 textarea {
@@ -294,6 +422,20 @@ footer {
     padding: 10px;
     margin-top: 20px;
     font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+footer p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+footer p a:hover {
+    text-decoration: underline;
 }
 /* Smooth Scrolling */
 html {
@@ -324,6 +466,23 @@ html {
             height: auto;
     }
 
+    #tips h2 {
+             font-size: 2rem;
+    }
+
+    .content-section h2 {
+            font-size: 1.8rem;
+    }
+    
+    .content-section h3 {
+            font-size: 1.4rem;
+    }
+
+    .content-section p,
+    .content-section ul li {
+            font-size: 0.9rem;
+    }
+
     .cta-btn {
         font-size: 1rem;
         padding: 8px 16px;
@@ -331,6 +490,12 @@ html {
     body {
             font-size: 20px;
         }
+#nutrition-info,
+#total-nutrition,
+#nutrition-box {
+    padding: 15px;
+    font-size: 14px;
+}
 }
 .weight-input-container {
     display: flex;
@@ -347,6 +512,11 @@ html {
     width: 100rem;;
 }
 
+#weight-input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
 #weight-unit {
     padding: 10px;
     border: 1px solid #ccc;
@@ -359,27 +529,49 @@ html {
     font-size: 1rem;
     color: #333;
 }
-.tips-column {
-    flex: 1;
-    text-align: center;
-    background-color: #ffffff;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.tips-column:hover {
-    background-color: #e8f5e9;
-}
 
 .content-section {
     margin-top: 20px;
     padding: 20px;
     background-color: #ffffff;
     border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: none;
     border-radius: 8px;
+}
+.content-section.active {
+    display: block;
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.content-section h3 {
+    font-size: 1.5rem;
+    color: #4CAF50;
+    margin-top: 20px;
+}
+
+.content-section p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.content-section ul {
+    margin-top: 10px;
+    padding-left: 20px;
+    color: #555;
+}
+
+.content-section ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    list-style-type: disc;
 }
 
 .hidden {
