@@ -1,4 +1,8 @@
 /* General body styling */
+html,body{
+    overflow-x: hidden;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
@@ -444,10 +448,6 @@ html {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    
-    .navbar ul {
-            flex-direction: column;
-    }
 
     .tips-container {
         flex-direction: column;

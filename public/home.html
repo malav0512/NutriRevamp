@@ -4,36 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Link to your CSS file -->
     <title>Calorie_Meter_Home_Page</title>
   </head>
   <body>
     <!-- Navigation Bar (Top Bar) -->
     <header>
-      <nav class="navbar">
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#fitness">Fitness</a></li>
-          <li><a href="#tips">Tips</a></li>
-          <li><a href="#feedback">Feedback</a></li>
-        </ul>
+      <nav class="navbar navbar-expand-md">
+        <button
+          class="navbar-toggler bg-light ms-auto me-4"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="row w-100 text-center collapse navbar-collapse"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav ms-auto">
+            <li class="col-md-2 col-sm-12"><a href="#home">Home</a></li>
+            <li class="col-md-2 col-sm-12">
+              <a href="#about">About</a>
+            </li>
+            <li class="col-md-2 col-sm-12">
+              <a href="#fitness">Fitness</a>
+            </li>
+            <li class="col-md-2 col-sm-12"><a href="#tips">Tips</a></li>
+            <li class="col-md-2 col-sm-12">
+              <a href="#feedback">Feedback</a>
+            </li>
+          </ul>
+        </div>
       </nav>
     </header>
     <!-- Home Section -->
     <section id="home" class="section home-section">
-      <div class="content">
-        <h1>Welcome to <span class="highlight">NutriRevamp</span></h1>
-        <p class="tagline">
-          Your partner in achieving a healthier, fitter you.
-        </p>
-        <a href="#fitness" class="cta-btn">Explore Now</a>
-      </div>
-      <div class="hero-image">
-        <img
-          src="kimzy-nanney-LNDgBERq8Q0-unsplash.jpg"
-          alt="Healthy food and lifestyle"
-        />
+      <div class="container-fluid">
+        <div class="content">
+          <h1 class="display-4 fw-bold">
+            Welcome to <span class="highlight text-primary">NutriRevamp</span>
+          </h1>
+          <p class="tagline">
+            Your partner in achieving a healthier, fitter you.
+          </p>
+          <a href="#fitness" class="cta-btn">Explore Now</a>
+        </div>
+        <div class="hero-image">
+          <img
+            src="kimzy-nanney-LNDgBERq8Q0-unsplash.jpg"
+            alt="Healthy food and lifestyle"
+          />
+        </div>
       </div>
     </section>
 
