@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/malav0512/Nutrirevamp/issues"
   },
-  "homepage": "https://github.com/malav0512/Nutrirevamp#readme"
+  "homepage": "https://github.com/malav0512/Nutrirevamp#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
