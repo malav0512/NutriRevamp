@@ -50,134 +50,186 @@
     <!-- Home Section -->
     <section id="home" class="section home-section">
       <div class="container-fluid">
-        <div class="content">
-          <h1 class="display-4 fw-bold">
-            Welcome to <span class="highlight text-primary">NutriRevamp</span>
-          </h1>
-          <p class="tagline">
-            Your partner in achieving a healthier, fitter you.
-          </p>
-          <a href="#fitness" class="cta-btn">Explore Now</a>
-        </div>
-        <div class="hero-image">
-          <img
-            src="kimzy-nanney-LNDgBERq8Q0-unsplash.jpg"
-            alt="Healthy food and lifestyle"
-          />
+        <div class="content row align-items-center">
+          <div class="col-lg-6 text-center text-lg-start">
+            <h1 class="display-4 fw-bold">
+              Welcome to <span class="highlight text-primary">NutriRevamp</span>
+            </h1>
+            <p class="tagline">
+              Your partner in achieving a healthier, fitter you.
+            </p>
+            <a href="#fitness" class="cta-btn btn btn-primary">Explore Now</a>
+          </div>
+          <div class="col-lg-6 text-center">
+            <div class="hero-image">
+              <img
+                src="kimzy-nanney-LNDgBERq8Q0-unsplash.jpg"
+                alt="Healthy food and lifestyle"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section about-section">
-      <h2>About NutriRevamp</h2>
-      <p>
-        NutriRevamp is your ultimate guide to tracking nutrition, setting
-        fitness goals, and maintaining a healthy lifestyle. We provide
-        personalized insights and tips to help you stay on track.
-      </p>
-      <img src="cala-w6ftFbPCs9I-unsplash.jpg" alt="About NutriRevamp" />
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+            <h2>About NutriRevamp</h2>
+            <p>
+              NutriRevamp is your ultimate guide to tracking nutrition, setting
+              fitness goals, and maintaining a healthy lifestyle. We provide
+              personalized insights and tips to help you stay on track.
+            </p>
+          </div>
+          <div class="col-lg-6 text-center">
+            <div class="image-wrapper">
+              <img
+                src="cala-w6ftFbPCs9I-unsplash.jpg"
+                alt="About NutriRevamp"
+                class="img-fluid rounded shadow"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Fitness Section -->
-    <section id="fitness" class="section fitness-section">
-      <div class="content">
-        <h2>Fitness Goals</h2>
-        <p>Select a food item to view its nutritional details:</p>
+    <section id="fitness" class="section fitness-section py-5">
+      <div class="container">
+        <div class="content">
+          <h2 class="text-center mb-4">Fitness Goals</h2>
+          <p class="text-center">
+            Select a food item to view its nutritional details:
+          </p>
 
-        <!-- Food Selection -->
-        <div class="form-group">
-          <label for="food-category">Category:</label>
-          <input
-            type="text"
-            id="food-category"
-            placeholder="Type a category..."
-            autocomplete="off"
-          />
-          <div id="category-suggestions" class="suggestions"></div>
-        </div>
-
-        <div class="form-group">
-          <label for="food-description">Description:</label>
-          <select id="food-description">
-            <option value="">Select a description</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="food-quantity">Quantity (in grams):</label>
-          <input type="number" id="food-quantity" value="100" min="1" />
-        </div>
-        <!-- Weight Input Section -->
-        <div class="form-group">
-          <label for="weight-input">Weight:</label>
-          <div class="weight-input-container">
+          <!-- Food Selection -->
+          <div class="form-group mb-3">
+            <label for="food-category">Category:</label>
             <input
-              type="number"
-              id="weight-input"
-              placeholder="Enter weight"
-              min="0"
-              step="0.1"
+              type="text"
+              id="food-category"
+              placeholder="Type a category..."
+              autocomplete="off"
             />
-            <select id="weight-unit">
-              <option value="kg">Kilograms (kg)</option>
+            <div id="category-suggestions" class="suggestions mt-3"></div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="food-description" class="form-label"
+              >Description:</label
+            >
+            <select id="food-description" class="form-select">
+              <option value="">Select a description</option>
             </select>
           </div>
-          <p
-            id="weight-output"
-            style="margin-top: 10px; font-size: 16px; color: #555"
-          ></p>
-        </div>
-        <button id="fetch-nutrition" class="btn">Add Food Item</button>
-        <!-- Individual Nutritional Information -->
-        <div id="nutrition-info" class="nutrition-info">
-          <h3>Individual Nutritional Details:</h3>
-          <!-- Dynamic content will be injected here -->
-        </div>
 
-        <!-- Total Nutritional Information -->
-        <div id="total-nutrition" class="total-nutrition">
-          <h3>Total Nutritional Info:</h3>
-          <!-- Dynamic content will be injected here -->
-        </div>
-        <!-- Nutritional Info Box -->
-        <div id="nutrition-box" class="nutrition-box">
-          <h3>Approximate Nutritional Values:</h3>
-          <button id="nutritional-info" class="btn">Show details</button>
-          <div>
-            <p><strong>Protein:</strong> <span id="protein-value">0</span> g</p>
-            <p><strong>Fats:</strong> <span id="fats-value">0</span> g</p>
-            <p>
-              <strong>Carbohydrates:</strong> <span id="carbs-value">0</span> g
-            </p>
+          <div class="form-group mb-3">
+            <label for="food-quantity" class="form-label"
+              >Quantity (in grams):</label
+            >
+            <input
+              type="number"
+              id="food-quantity"
+              value="100"
+              min="1"
+              class="form-control"
+            />
+          </div>
+          <!-- Weight Input Section -->
+          <div class="form-group mb-4">
+            <label for="weight-input" class="form-label">Weight:</label>
+            <div class="weight-input-container">
+              <input
+                type="number"
+                class="form-control"
+                id="weight-input"
+                placeholder="Enter weight"
+                min="0"
+                step="0.1"
+              />
+              <select id="weight-unit" class="form-select">
+                <option value="kg">Kilograms (kg)</option>
+              </select>
+            </div>
+            <p
+              id="weight-output"
+              class="mt-2 text-muted"
+              style="margin-top: 10px; font-size: 16px; color: #555"
+            ></p>
+          </div>
+          <button id="fetch-nutrition" class="btn btn-primary w-20 mt-4">
+            Add Food Item
+          </button>
+          <!-- Individual Nutritional Information -->
+          <div id="nutrition-info" class="nutrition-info mb-4">
+            <h3 class="h5">Individual Nutritional Details:</h3>
+            <!-- Dynamic content will be injected here -->
+          </div>
+
+          <!-- Total Nutritional Information -->
+          <div id="total-nutrition" class="total-nutrition mb-4">
+            <h3 class="h5">Total Nutritional Info:</h3>
+            <!-- Dynamic content will be injected here -->
+          </div>
+          <!-- Nutritional Info Box -->
+          <div id="nutrition-box" class="nutrition-box card p-3">
+            <h3 class="h5">Approximate Nutritional Values:</h3>
+            <button id="nutritional-info" class="btn btn-secondary w-50 mb-3">
+              Show details
+            </button>
+            <div>
+              <p>
+                <strong>Protein:</strong> <span id="protein-value">0</span> g
+              </p>
+              <p><strong>Fats:</strong> <span id="fats-value">0</span> g</p>
+              <p>
+                <strong>Carbohydrates:</strong>
+                <span id="carbs-value">0</span> g
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Tips Section -->
-    <section id="tips" class="section tips-section">
-      <div class="content">
-        <h2>Nutrition Tips</h2>
-        <div class="tips-container">
-          <div class="tips-container">
-            <div class="tips-column" onclick="showContent('protein')">
-              Protein
-            </div>
-            <div class="tips-column" onclick="showContent('fats')">Fats</div>
-            <div class="tips-column" onclick="showContent('carbs')">
-              Carbohydrates
-            </div>
+    <section id="tips" class="section tips-section py-5 bg-light">
+      <h2 class="tect-center mb-4">Nutrition Tips</h2>
+
+      <button
+        class="tips-column btn btn-outline-primary mx-2"
+        onclick="showContent('protein')"
+      >
+        Protein
+      </button>
+      <button
+        class="tips-column btn btn-outline-primary mx-2"
+        onclick="showContent('fats')"
+      >
+        Fats
+      </button>
+      <button
+        class="tips-column btn btn-outline-primary mx-2"
+        onclick="showContent('carbs')"
+      >
+        Carbohydrates
+      </button>
+
+      <div id="protein-content" class="content-section container py-4">
+        <h2 class="text-center mb-4">Protein</h2>
+        <div class="row">
+          <div class="image-section col-md-6 text-center mb-4">
+            <img
+              src="mariana-medvedeva-usfIE5Yc7PY-unsplash.jpg"
+              alt="Descriptive text"
+              class="responsive-image img-fluid rounded shadow"
+            />
           </div>
-          <div id="protein-content" class="content-section">
-            <h2>Protein</h2>
-            <div class="image-section">
-              <img
-                src="mariana-medvedeva-usfIE5Yc7PY-unsplash.jpg"
-                alt="Descriptive text"
-                class="responsive-image"
-              />
-            </div>
+          <div class="col-md-6">
             <p>
               Protein is essential to good health. The very origin of the word —
               from the Greek <em>protos</em>, meaning "first" — reflects
@@ -188,6 +240,10 @@
               message the rest of us often get is that our daily protein intake
               is too high.
             </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
             <h3>Kwashiorkor</h3>
             <p>
               Kwashiorkor is a type of malnutrition characterized by severe
@@ -197,6 +253,11 @@
               and food insecurity. People with kwashiorkor may have food to eat,
               but not enough protein.
             </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
             <h3>How much protein do you need?</h3>
             <ul>
               <li>
@@ -218,6 +279,8 @@
                 grams per kilogram.
               </li>
             </ul>
+          </div>
+          <div class="col-md-6">
             <h3>Daily protein intake for women</h3>
             <p>
               For a 50-year-old woman who weighs 140 pounds and is sedentary
@@ -228,6 +291,11 @@
               blood supply. You should check with your doctor on your specific
               protein needs.
             </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
             <h3>Does protein have any negative health effects?</h3>
             <p>
               Some research suggests casual links between high protein diets and
@@ -243,21 +311,26 @@
               has any adverse effects in healthy people trying to optimize their
               health.
             </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
             <h3>How to get enough protein in your diet</h3>
             <p>
               There is a broad range of foods that are high in protein. These
               include:
             </p>
-            <ul>
-              <li>Tofu, tempeh, and other meat substitutes</li>
-              <li>Lean meats</li>
-              <li>Fish</li>
-              <li>Eggs</li>
-              <li>Milk</li>
-              <li>Greek yogurt</li>
-              <li>Quinoa</li>
-              <li>Legumes</li>
-              <li>Nuts</li>
+            <ul class="row">
+              <li class="col-md-4">Tofu, tempeh, and other meat substitutes</li>
+              <li class="col-md-4">Lean meats</li>
+              <li class="col-md-4">Fish</li>
+              <li class="col-md-4">Fish</li>
+              <li class="col-md-4">Eggs</li>
+              <li class="col-md-4">Milk</li>
+              <li class="col-md-4">Greek yogurt</li>
+              <li class="col-md-4">Quinoa</li>
+              <li class="col-md-4">Legumes</li>
+              <li class="col-md-4">Nuts</li>
             </ul>
             <p>
               Most people generally don’t need to track their protein intake. If
@@ -266,16 +339,20 @@
               plant foods, should bring your intake to an optimal range.
             </p>
           </div>
-          <!-- Fats Content -->
-          <div id="fats-content" class="content-section hidden">
-            <h2>Fats</h2>
-            <div class="image-section">
-              <img
-                src="louis-hansel-6gbr24z3H5c-unsplash.jpg"
-                alt="Descriptive text"
-                class="responsive-image"
-              />
-            </div>
+        </div>
+      </div>
+      <!-- Fats Content -->
+      <div id="fats-content" class="content-section d-none container py-4">
+        <h2 class="text-center mb-4">Fats</h2>
+        <div class="row">
+          <div class="image-section col-md-6 text-center mb-4">
+            <img
+              src="louis-hansel-6gbr24z3H5c-unsplash.jpg"
+              alt="Descriptive text"
+              class="responsive-image img-fluid rounded shadow"
+            />
+          </div>
+          <div class="col-md-6">
             <p>
               According to current dietary guidelines, a healthy adult should
               consume between 20-35% of their daily calories from fat, which
@@ -283,194 +360,262 @@
               weight depending on their activity level and overall calorie
               needs.
             </p>
-            <h3>Does your body need fat?</h3>
-            <p>
-              Fat is an important source of energy you get from the food you
-              eat. Your body needs fat to grow cells, protect your organs, and
-              absorb fat-soluble vitamins...
-            </p>
-            <h3>Types of Fat</h3>
-            <h4>Saturated Fats</h4>
-            <p>
-              Saturated fats are found in animal products like meat and full-fat
-              dairy. They also occur in tropical oils like palm and coconut...
-            </p>
-            <ul>
-              <li>Meats like beef, lamb, and pork</li>
-              <li>Processed meats like bacon and sausage</li>
-              <li>Chicken skin</li>
-              <li>Full-fat dairy products like cream, cheese, and butter</li>
-              <li>Tropical oils, like coconut and palm</li>
-            </ul>
-            <h4>Unsaturated Fats</h4>
-            <p>
-              Unsaturated fats are typically liquid at room temperature. They
-              come from plant sources and fatty fish, like salmon...
-            </p>
-            <ul>
-              <li>
-                Nontropical vegetable oils, like olive, canola, and soybean
-              </li>
-              <li>Fatty fish, like bluefin tuna, salmon, and sardines</li>
-              <li>
-                Nuts and seeds like walnuts, flaxseeds, and sunflower seeds
-              </li>
-              <li>Other foods like avocados and peanut butter</li>
-            </ul>
-            <h4>Trans Fats</h4>
-            <p>
-              Trans fats are created artificially and also occur naturally in
-              small amounts in some animal products...
-            </p>
-            <h3>Diets Low in Saturated Fat</h3>
-            <p>
-              Following an eating plan that focuses on heart-healthy foods can
-              help you limit your saturated fat intake...
-            </p>
-            <h4>Mediterranean Diet</h4>
-            <p>
-              The Mediterranean diet is based on the traditional eating patterns
-              of countries that border the Mediterranean Sea...
-            </p>
-            <h4>DASH Eating Plan</h4>
-            <p>
-              DASH (Dietary Approaches to Stop Hypertension) is an eating plan
-              created to improve heart health...
-            </p>
-            <h3>Health Risks of Excess Fat Intake</h3>
-            <ul>
-              <li>
-                <strong>Weight Gain:</strong> Fat is high in calories, with 9
-                calories per gram, which is more than twice the amount found in
-                carbohydrates and protein.
-              </li>
-              <li>
-                <strong>Heart Disease and Stroke:</strong> Eating too much
-                saturated fat can raise your LDL (bad) cholesterol.
-              </li>
-              <li>
-                <strong>Cancer:</strong> Some studies suggest that high-fat
-                diets may be linked to several cancers.
-              </li>
-              <li>
-                <strong>Digestive Distress:</strong> Too much fat can cause
-                bloating, gas, and loose stools.
-              </li>
-            </ul>
           </div>
         </div>
-        <!-- Carbohydrates Content -->
-        <div id="carbs-content" class="content-section hidden">
-          <h2>Carbohydrates</h2>
-          <div class="image-section">
+
+        <h3 class="mb-3">Does your body need fat?</h3>
+        <p>
+          Fat is an essential macronutrient that plays a vital role in
+          maintaining overall health and well-being. It is a primary source of
+          energy, providing more than double the calories per gram compared to
+          carbohydrates or proteins. Beyond energy, fat serves several critical
+          functions in the body: <strong>Cell Growth and Function</strong>: Fats
+          are integral components of cell membranes, which maintain the
+          structure and integrity of cells. They also support the development
+          and repair of tissues. <strong>Organ Protection</strong>: Fat acts as
+          a cushion, protecting vital organs like the heart, kidneys, and liver
+          from physical impact and injury. It also helps insulate the body,
+          maintaining a stable internal temperature.<strong>
+            Absorption of Fat-Soluble Vitamins</strong
+          >: Certain vitamins—A, D, E, and K—are fat-soluble, meaning they
+          require dietary fat for proper absorption. Without adequate fat, the
+          body cannot effectively utilize these essential vitamins, which are
+          critical for vision, bone health, immunity, and blood clotting.<strong>
+            Hormone Production</strong
+          >: Fats are the building blocks of important hormones, including
+          steroid hormones like estrogen, testosterone, and cortisol. These
+          hormones regulate various bodily functions, such as metabolism, stress
+          response, and reproductive health. Energy Reserve: Excess dietary fat
+          is stored in adipose tissue, which serves as an energy reserve that
+          the body can tap into during periods of fasting or increased energy
+          demand. <strong>Brain Health</strong>: Fats, particularly omega-3 and
+          omega-6 fatty acids, are crucial for brain development and function.
+          They contribute to cognitive performance, mood regulation, and the
+          prevention of neurological disorders.
+        </p>
+        <h3 class="mb-3">Types of Fats</h3>
+        <h4 class="mb-2">Saturated Fats</h4>
+        <p>
+          Saturated fats are found in animal products like meat and full-fat
+          dairy. They also occur in tropical oils like palm and coconut...
+        </p>
+        <ul class="row">
+          <li class="col-md-4">Meats like beef, lamb, and pork</li>
+          <li class="col-md-4">Processed meats like bacon and sausage</li>
+          <li class="col-md-4">Chicken skin</li>
+          <li class="col-md-4">
+            Full-fat dairy products like cream, cheese, and butter
+          </li>
+          <li class="col-md-4">Tropical oils, like coconut and palm</li>
+        </ul>
+        <h4 class="mb-2">Unsaturated Fats</h4>
+        <p>
+          Unsaturated fats are typically liquid at room temperature. They come
+          from plant sources and fatty fish, like salmon. Including unsaturated
+          fats in your diet may helpTrusted Source lower your LDL cholesterol
+          levels. They also provide essential fatty acids your body needs but
+          can’t produce, like omega-6s and omega-3s. Foods high in unsaturated
+          fat include: nontropical vegetable oils, like olive, canola, and
+          soybean fatty fish, like bluefin tuna, salmon, and sardines nuts and
+          seeds like walnuts, flaxseeds, and sunflower seeds other foods like
+          avocados and peanut butter
+        </p>
+        <ul class="row">
+          <li class="col-md-4">
+            Nontropical vegetable oils, like olive, canola, and soybean
+          </li>
+          <li class="col-md-4">
+            Fatty fish, like bluefin tuna, salmon, and sardines
+          </li>
+          <li class="col-md-4">
+            Nuts and seeds like walnuts, flaxseeds, and sunflower seeds
+          </li>
+          <li class="col-md-4">Other foods like avocados and peanut butter</li>
+        </ul>
+        <h4 class="mb-2">Trans Fats</h4>
+        <p>
+          Trans fats are created artificially and also occur naturally in small
+          amounts in some animal products. Trans fats raise your LDL cholesterol
+          and lower your HDL (“good”) cholesterol. The main source of artificial
+          trans fats in processed foods is partially hydrogenated vegetable
+          oils. These fats are solid at room temperature and can improve the
+          taste and shelf life of foods. The
+          <strong>Food and Drug Administration (FDA)</strong>Trusted Source no
+          longer recognizes partially hydrogenated vegetable oils as safe. As of
+          July 2018, manufacturers can no longer add them to foods in the United
+          States.
+        </p>
+        <h3 class="mb-3">Diets Low in Saturated Fat</h3>
+        <p>
+          Following an eating plan that focuses on heart-healthy foods can help
+          you limit your saturated fat intake. Always consult your doctor or a
+          registered dietitian before making significant changes to your diet.
+        </p>
+        <h4 class="mb-2">Mediterranean Diet</h4>
+        <p>
+          The Mediterranean diet is based on the traditional eating patterns of
+          countries that border the Mediterranean Sea. A Mediterranean-style
+          diet focuses on: plenty of fruits, vegetables, and whole grains other
+          plant foods like potatoes, nuts, beans, and seeds olive oil as a
+          primary source of fat fish, poultry, and dairy in moderate amounts.
+        </p>
+        <h4 class="mb-2">DASH Eating Plan</h4>
+        <p>
+          DASH (Dietary Approaches to Stop Hypertension) is an eating plan
+          created to improve heart health. The DASH plan recommends including:
+          fruits, vegetables, and whole grains fish, poultry, and low fat dairy
+          nuts, beans, and vegetable oils Foods to limit with DASH include:
+          foods high in saturated fat, like meats, full-fat dairy, and tropical
+          oils sugar-sweetened foods and beverages
+        </p>
+        <h3 class="mb-3">Health Risks of Excess Fat Intake</h3>
+        <ul class="row">
+          <li class="col-md-6">
+            <strong>Weight Gain:</strong> Fat is high in calories, with 9
+            calories per gram, which is more than twice the amount found in
+            carbohydrates and protein.
+          </li>
+          <li class="col-md-6">
+            <strong>Heart Disease and Stroke:</strong> Eating too much saturated
+            fat can raise your LDL (bad) cholesterol.
+          </li>
+          <li class="col-md-6">
+            <strong>Cancer:</strong> Some studies suggest that high-fat diets
+            may be linked to several cancers.
+          </li>
+          <li class="col-md-6">
+            <strong>Digestive Distress:</strong> Too much fat can cause
+            bloating, gas, and loose stools.
+          </li>
+        </ul>
+      </div>
+      <!-- Carbohydrates Content -->
+      <div id="carbs-content" class="content-section d-none">
+        <h2 class="text-center mb-4">Carbohydrates</h2>
+        <div class="row">
+          <div class="image-section col-md-6 text-center">
             <img
               src="mette-van-der-linden-nVH-5t4LxmY-unsplash.jpg"
               alt="Descriptive text"
-              class="responsive-image"
+              class="responsive-image img-fluid rounded shadow"
             />
           </div>
-
-          <p>
-            Moderately active individuals should aim for 5-7 grams of
-            carbohydrates per kilogram of body weight.
-          </p>
-          <h3>Daily Calorie Intake</h3>
-          <p>
-            The Dietary Guidelines for Americans recommend that carbohydrates
-            make up 45–65% of your total daily calories. For example, if you eat
-            2,000 calories per day, you should consume 225–325 grams of
-            carbohydrates.
-          </p>
-          <h3>Weight Loss</h3>
-          <p>
-            If you're trying to lose weight, you can try eating 100–150 grams of
-            carbohydrates per day. You can also try breaking up your
-            carbohydrates evenly throughout the day, with 40–50 grams per meal.
-          </p>
-          <h3>Understanding Carbohydrates</h3>
-          <p>
-            Carbohydrates are a type of macronutrient found in many foods and
-            beverages. Most carbs occur naturally in plant-based foods, such as
-            grains. Food manufacturers also add carbs to processed foods in the
-            form of starch or added sugar.
-          </p>
-          <ul>
-            <li>Fruits</li>
-            <li>Vegetables</li>
-            <li>Milk</li>
-            <li>Nuts</li>
-            <li>Grains</li>
-            <li>Seeds</li>
-            <li>Beans, peas, and lentils</li>
-          </ul>
-          <h3>Types of Carbohydrates</h3>
-          <ul>
-            <li>
-              <strong>Sugar:</strong> The simplest form of carbohydrate,
-              naturally found in fruits, vegetables, and milk.
-            </li>
-            <li>
-              <strong>Starch:</strong> A complex carbohydrate found in
-              vegetables, grains, and beans.
-            </li>
-            <li>
-              <strong>Fiber:</strong> Essential for digestive health, found in
-              fruits, vegetables, and whole grains.
-            </li>
-          </ul>
-          <h3>Carbohydrates and Your Health</h3>
-          <p>
-            Carbohydrates are vital for energy, disease prevention, and weight
-            control. They are the body's main fuel source, breaking down into
-            simple sugars during digestion and providing glucose for energy.
-          </p>
-          <h3>Protecting Against Disease</h3>
-          <p>
-            Whole grains and dietary fiber help lower the risk of heart disease,
-            stroke, obesity, and certain cancers. Fiber is also essential for
-            optimal digestive health.
-          </p>
-          <h3>Controlling Weight</h3>
-          <p>
-            Eating plenty of fruits, vegetables, and whole grains can help
-            control weight by promoting fullness with fewer calories.
-          </p>
-          <h3>Choose Your Carbohydrates Wisely</h3>
-          <ul>
-            <li>Focus on fiber-rich fruits and vegetables.</li>
-            <li>Choose whole grains over refined grains.</li>
-            <li>Stick to low-fat dairy products.</li>
-            <li>Eat more beans, peas, and lentils.</li>
-            <li>Limit added sugars.</li>
-          </ul>
+          <div class="col-md-6">
+            <p>
+              Moderately active individuals should aim for 5-7 grams of
+              carbohydrates per kilogram of body weight.
+            </p>
+          </div>
         </div>
+        <h3 class="mb-3">Daily Calorie Intake</h3>
+        <p>
+          The Dietary Guidelines for Americans recommend that carbohydrates make
+          up 45–65% of your total daily calories. For example, if you eat 2,000
+          calories per day, you should consume 225–325 grams of carbohydrates.
+        </p>
+        <h3 class="mb-3">Weight Loss</h3>
+        <p>
+          If you're trying to lose weight, you can try eating 100–150 grams of
+          carbohydrates per day. You can also try breaking up your carbohydrates
+          evenly throughout the day, with 40–50 grams per meal.
+        </p>
+        <h3 class="mb-3">Understanding Carbohydrates</h3>
+        <p>
+          Carbohydrates are a type of macronutrient found in many foods and
+          beverages. Most carbs occur naturally in plant-based foods, such as
+          grains. Food manufacturers also add carbs to processed foods in the
+          form of starch or added sugar.
+        </p>
+        <ul class="row">
+          <li class="col-md-4">Fruits</li>
+          <li class="col-md-4">Vegetables</li>
+          <li class="col-md-4">Milk</li>
+          <li class="col-md-4">Nuts</li>
+          <li class="col-md-4">Grains</li>
+          <li class="col-md-4">Seeds</li>
+          <li class="col-md-4">Beans, peas, and lentils</li>
+        </ul>
+        <h3>Types of Carbohydrates</h3>
+        <ul class="row">
+          <li class="col-md-4">
+            <strong>Sugar:</strong> The simplest form of carbohydrate, naturally
+            found in fruits, vegetables, and milk.
+          </li>
+          <li class="col-md-4">
+            <strong>Starch:</strong> A complex carbohydrate found in vegetables,
+            grains, and beans.
+          </li>
+          <li class="col-md-4">
+            <strong>Fiber:</strong> Essential for digestive health, found in
+            fruits, vegetables, and whole grains.
+          </li>
+        </ul>
+        <h3 class="mb-3">Carbohydrates and Your Health</h3>
+        <p>
+          Carbohydrates are vital for energy, disease prevention, and weight
+          control. They are the body's main fuel source, breaking down into
+          simple sugars during digestion and providing glucose for energy.
+        </p>
+        <h3 class="mb-3">Protecting Against Disease</h3>
+        <p>
+          Whole grains and dietary fiber help lower the risk of heart disease,
+          stroke, obesity, and certain cancers. Fiber is also essential for
+          optimal digestive health.
+        </p>
+        <h3 class="mb-3">Controlling Weight</h3>
+        <p>
+          Eating plenty of fruits, vegetables, and whole grains can help control
+          weight by promoting fullness with fewer calories.
+        </p>
+        <h3 class="mb-3">Choose Your Carbohydrates Wisely</h3>
+        <ul class="row">
+          <li class="col-md-4">Focus on fiber-rich fruits and vegetables.</li>
+          <li class="col-md-4">Choose whole grains over refined grains.</li>
+          <li class="col-md-4">Stick to low-fat dairy products.</li>
+          <li class="col-md-4">Eat more beans, peas, and lentils.</li>
+          <li class="col-md-4">Limit added sugars.</li>
+        </ul>
       </div>
     </section>
 
     <!-- Feedback Section -->
-    <section id="feedback" class="section feedback-section">
-      <div class="content">
-        <h2>We Value Your Feedback</h2>
-        <p>
-          Share your experience with Nutrirevamp and help us improve our
-          services!
-        </p>
-        <form
-          id="feedback-form"
-          action="http://127.0.0.1:3000/feedback"
-          method="POST"
-        >
-          <textarea
-            placeholder="Enter your feedback here..."
-            rows="4"
-            name="feedback"
-          ></textarea>
-          <button type="submit" class="btn">Submit Feedback</button>
-        </form>
+    <section id="feedback" class="section feedback-section py-5 bg-light">
+      <div class="container">
+        <div class="container content text-center mb-4">
+          <h2 class="text-primary">We Value Your Feedback</h2>
+          <p class="text-muted">
+            Share your experience with Nutrirevamp and help us improve our
+            services!
+          </p>
+          <form
+            id="feedback-form"
+            action="http://127.0.0.1:3000/feedback"
+            method="POST"
+            class="mx-auto"
+            style="max-width: 600px"
+          >
+            <div class="mb-3">
+              <textarea
+                class="form-control"
+                placeholder="Enter your feedback here..."
+                rows="4"
+                name="feedback"
+                required
+              ></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary px-4">
+                Submit Feedback
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
-    <footer>
-      <p>&copy; 2024 NutriRevamp.All Rights Reserved.</p>
+    <footer class="bg-dark text-white py-3">
+      <div class="container text-center">
+        <p class="mb-0">&copy; 2024 NutriRevamp.All Rights Reserved.</p>
+      </div>
     </footer>
     <script src="script.js"></script>
   </body>

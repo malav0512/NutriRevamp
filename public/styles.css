@@ -90,6 +90,23 @@ img {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 /* Fitness Section Styling */
+.image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.d-none {
+    display: none !important;
+}
+.image-wrapper img {
+    max-height: 400px;
+    /* Adjust as per your design */
+    width: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0,0.2);
+}
 .fitness-section {
     padding: 60px 20px;
     background-color: #f9f9f9;
@@ -536,7 +553,6 @@ html {
     background-color: #ffffff;
     border: 1px solid #ddd;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    display: none;
     border-radius: 8px;
 }
 .content-section.active {
@@ -574,9 +590,7 @@ html {
     list-style-type: disc;
 }
 
-.hidden {
-    display: none;
-}
+
 h2,
 h3 {
     color: #2e7d32;

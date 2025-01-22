@@ -200,13 +200,20 @@ function initializeWeightInput() {
 // Call the function to initialize the weight input functionality
 initializeWeightInput();
 
-function showContent(type) {
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(section => section.classList.add('hidden'));
+function showContent(section) {
+  // Hide all content sections
+  console.log("Clicked section:", section); // Debug: Logs the clicked section
+  document.getElementById("protein-content").classList.add("d-none");
+  document.getElementById("fats-content").classList.add("d-none");
+  document.getElementById("carbs-content").classList.add("d-none");
 
-            const selectedSection = document.getElementById(`${type}-content`);
-            selectedSection.classList.remove('hidden');
-        }
+  // Show the selected content section
+  const selectedContent = document.getElementById(`${section}-content`);
+  console.log("Selected content:", selectedContent); 
+  if (selectedContent) {
+    selectedContent.classList.remove("d-none");
+  }
+}
 document.addEventListener('DOMContentLoaded', () => {
   
 const button = document.getElementById("nutritional-info");
