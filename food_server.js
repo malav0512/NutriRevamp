@@ -15,10 +15,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // MySQL Database Connection
 const db = mysql.createConnection({
-    host: 'localhost', // Replace with your database host
-    user: 'root',      // Replace with your database username
-    password: 'Malav@04',      // Replace with your database password
-    database: 'food_data' // Replace with your database name
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || 'Malav@04',
+    database: process.env.DB_NAME || 'food_data'
 });
 
 // Connect to the database
