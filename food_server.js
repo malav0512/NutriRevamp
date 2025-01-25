@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
-const port=3000;
+const port=5432;
 const app = express();
 const path = require('path');
 const fs = require('fs');
@@ -17,8 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // MySQL Database Connection
 const db= new Client({
   host: process.env.DB_HOST ||'dpg-cuajhfa3eus73enbchg-a', // Replace with your Hostname
-  port:process.env.DB_USER || 5432,                       // Replace with your Port
-  user: 'database_9lmd_user',       // Replace with your Username
+  port: 5432,                       // Replace with your Port
+  user: process.env.DB_USER ||'database_9lmd_user',       // Replace with your Username
   password: process.env.DB_PASSWORD ||'Gtri2bSe1eG0gDouzy2aVoE5UAnsTfZ3', // Replace with your Password
   database:process.env.DB_NAME || 'database_9lmd',        // Replace with your Database name
 });
