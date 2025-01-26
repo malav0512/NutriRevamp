@@ -15,10 +15,11 @@ NutriRevamp is a web application that helps you track your nutritional intake an
 ## Installation
 Clone the repository and run the following commands:
 
+## My Project Link
+
+https://malav0512.github.io/NutriRevamp/
+
 ```bash
 npm install
 npm start
 ```
-##My Project Link
-
-https://malav0512.github.io/NutriRevamp/
