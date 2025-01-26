@@ -19,4 +19,5 @@ Clone the repository and run the following commands:
 npm install
 npm start
 ```
-My Project Link
+#My Project Link
+https://malav0512.github.io/NutriRevamp/
