@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
-const port=3000;
+const port= process.env.DB_PORT||3000 ;
 const app = express();
 const path = require('path');
 const fs = require('fs');
@@ -15,22 +15,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // MySQL Database Connection
-const db = mysql.createConnection({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || 'Malav@04',
-    database: process.env.DB_NAME || 'food_data'
+const db = mysql.createPool({
+  connectionLimit:10,
+    host: process.env.DB_HOST ,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD ,
+    database: process.env.DB_NAME,
 });
 
 // Connect to the database
-db.connect((err) => {
+db.getConnection((err,connection) => {
     if (err) {
         console.error('Database connection failed:', err);
         return;
     }
     console.log('Connected to the database.');
+    connection.release();
 });
 
+module.exports = db;
 //Code
 app.get("/categories", (req, res) => {
   const search = req.query.search || "";
@@ -51,6 +54,7 @@ app.get("/descriptions", (req, res) => {
   const { category } = req.query;
 
   // Validate category
+  
   if (!category) {
     return res.status(400).json({ message: "Category is required." });
   }
