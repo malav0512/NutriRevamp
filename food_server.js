@@ -1,12 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql2');
+const { Client } = require('pg');
 const port= process.env.DB_PORT||3000 ;
 const app = express();
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
-const { Client } = require('pg');
 app.use(cors());
 
 
@@ -14,43 +13,41 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// MySQL Database Connection
-const db = mysql.createPool({
-  connectionLimit:10,
-    host: process.env.DB_HOST ,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD ,
-    database: process.env.DB_NAME,
+// PostgreSQL connection
+const pgClient = new Client({
+  connectionString: 'postgresql://food_postgre_user:bpHiqGDQKBFTLW3244vwH163B9qsQAw4@dpg-d0ifu5qdbo4c73am85ag-a.oregon-postgres.render.com/food_postgre',
+  port: 5432,
+  user: 'food_postgre_user',
+  password: 'bpHiqGDQKBFTLW3244vwH163B9qsQAw4',
+  database: 'food_postgre',
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 // Connect to the database
-db.getConnection((err,connection) => {
-    if (err) {
-        console.error('Database connection failed:', err);
-        return;
-    }
-    console.log('Connected to the database.');
-    connection.release();
-});
 
-module.exports = db;
+pgClient.connect()
+  .then(() => console.log('Connected to PostgreSQL database.'))
+  .catch(err => console.error('Database connection failed:', err));
+
+  
+app.use(express.json());
 //Code
-app.get("/categories", (req, res) => {
+app.get("/categories", async(req, res) => {
   const search = req.query.search || "";
-  const query = "SELECT DISTINCT category FROM food WHERE category LIKE ?";
-  db.query(query,[`%${search}%`],(err, results) => {
-    if (err) {
-      console.error("Error fetching categories:", err);
-      res.status(500).json({ error: "Failed to fetch categories" });
-    } else{
-    // Send the categories as JSON
-    res.json(results);
+  const query = "SELECT DISTINCT category FROM food WHERE category LIKE $1";
+  try {
+    const result = await pgClient.query(query, [`%${search}%`]);
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error fetching categories:", err);
+    res.status(500).json({ error: "Failed to fetch categories" });
   }
-  });
 });
 
 // Endpoint to get descriptions for a specific category
-app.get("/descriptions", (req, res) => {
+app.get("/descriptions", async(req, res) => {
   const { category } = req.query;
 
   // Validate category
@@ -59,19 +56,17 @@ app.get("/descriptions", (req, res) => {
     return res.status(400).json({ message: "Category is required." });
   }
 
-  const query = "SELECT DISTINCT description FROM food WHERE category = ?";
-  db.query(query, [category], (err, results) => {
-    if (err) {
-      console.error("Database error:", err);
-      return res.status(500).json({ message: "Internal server error." });
-    }
-
-    // Send the descriptions as JSON
-    res.json(results);
-  });
-}); //
+  const query = "SELECT DISTINCT description FROM food WHERE category = $1";
+  try {
+    const result = await pgClient.query(query, [category]);
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Database error:", err);
+    res.status(500).json({ message: "Internal server error." });
+  }
+});//
 // Endpoint to fetch data by category and description
-app.get('/food', (req, res) => {
+app.get('/food', async(req, res) => {
     const { category, description } = req.query;
     console.log("Category received:", category);
     console.log("Description received:", description);
@@ -83,27 +78,24 @@ app.get('/food', (req, res) => {
     const query = `
         SELECT *
         FROM food
-        WHERE category = ? AND description LIKE ?`;
+        WHERE category = $1 AND description LIKE $2`;
 
      const searchDescription = `%${description}%`; // Add wildcards for partial matching
      console.log('Category:', category);
      console.log('Description:', `%${description}%`);
      console.log('Executing query:', query, [category, `%${description}%`]);
 
-    db.query(query, [category, searchDescription], (err, results) => {
-        if (err) {
-            console.error('Error fetching data:', err);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
-        if (results.length === 0) {
-      return res.status(404).json({ message: "No data found for the given inputs." });
+     try {
+      const result = await pgClient.query(query, [category, `%${description}%`]);
+      if (result.rows.length === 0) return res.status(404).json({ message: "No data found." });
+      res.json(result.rows);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
     }
-        console.log('Query results:', results);
-        res.json(results);
-    });
-});
+  });
 // Endpoint to update food amount
-app.put('/update-food', (req, res) => {
+app.put('/update-food', async(req, res) => {
     const { category, description, newAmount } = req.body;
 
     if (!category || !description || !newAmount) {
@@ -112,23 +104,21 @@ app.put('/update-food', (req, res) => {
 
     const query = `
         UPDATE food 
-        SET amount = ? 
-        WHERE category = ? AND description = ?`;
+        SET amount = $1 
+        WHERE category = $2 AND description = $3`;
 
-    db.query(query, [newAmount, category, description], (err, result) => {
-        if (err) {
-            console.error('Error updating food amount:', err);
-            res.status(500).json({ error: 'Failed to update food amount.' });
-        } else if (result.affectedRows === 0) {
-            res.status(404).json({ message: 'No matching record found to update.' });
-        } else {
-            res.json({ message: 'Food amount updated successfully.' });
+        try {
+          const result = await pgClient.query(query, [newAmount, category, description]);
+          if (result.rowCount === 0) return res.status(404).json({ message: 'No matching record found.' });
+          res.json({ message: 'Food amount updated successfully.' });
+        } catch (err) {
+          console.error('Error updating food amount:', err);
+          res.status(500).json({ error: 'Failed to update food amount.' });
         }
-    });
-});
+      });
 
 // Endpoint to calculate nutritional values based on amount
-app.post('/calculate-nutrition', (req, res) => {
+app.post('/calculate-nutrition', async(req, res) => {
   const { category, description, amount } = req.body;
 
   if (!category || !description || !amount) {
@@ -142,32 +132,30 @@ app.post('/calculate-nutrition', (req, res) => {
            Data.Fat.Total Lipid AS fatsPer100g, 
            Data.Kilocalories AS caloriesPer100g
     FROM food 
-    WHERE category = ? AND description = ?`;
+    WHERE category = $1 AND description = $2`;
 
-  db.query(query, [category, description], (err, results) => {
-    if (err) {
-      console.error('Error fetching data:', err);
-      return res.status(500).json({ error: 'Internal Server Error' });
+    try {
+      const result = await pgClient.query(query, [category, description]);
+      if (result.rows.length === 0) return res.status(404).json({ message: "No data found." });
+  
+      const food = result.rows[0];
+      const multiplier = amount / 100;
+  
+      const calculatedNutrition = {
+        description: food.description,
+        protein: (food.proteinper100g * multiplier).toFixed(2),
+        carbs: (food.carbsper100g * multiplier).toFixed(2),
+        fats: (food.fatsper100g * multiplier).toFixed(2),
+        calories: (food.caloriesper100g * multiplier).toFixed(2),
+      };
+  
+      res.json(calculatedNutrition);
+    } catch (err) {
+      console.error('Error calculating nutrition:', err);
+      res.status(500).json({ error: 'Failed to calculate nutrition.' });
     }
-
-    if (results.length === 0) {
-      return res.status(404).json({ message: "No data found for the given inputs." });
-    }
-
-    const food = results[0];
-    const multiplier = amount / 100;
-
-    const calculatedNutrition = {
-      description: food.description,
-      protein: (food.proteinPer100g * multiplier).toFixed(2),
-      carbs: (food.carbsPer100g * multiplier).toFixed(2),
-      fats: (food.fatsPer100g * multiplier).toFixed(2),
-      calories: (food.caloriesPer100g * multiplier).toFixed(2),
-    };
-
-    res.json(calculatedNutrition);
   });
-});
+
 // Feedback route
 app.post('/feedback', (req, res) => {
     const feedback = req.body.feedback;
