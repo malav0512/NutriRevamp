@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Client } = require('pg');
-const port= process.env.DB_PORT||3000 ;
+const port= process.env.PORT||3000 ;
 const app = express();
 const path = require('path');
 const fs = require('fs');
@@ -15,11 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // PostgreSQL connection
 const pgClient = new Client({
-  connectionString: 'postgresql://food_postgre_user:bpHiqGDQKBFTLW3244vwH163B9qsQAw4@dpg-d0ifu5qdbo4c73am85ag-a.oregon-postgres.render.com/food_postgre',
-  port: 5432,
-  user: 'food_postgre_user',
-  password: 'bpHiqGDQKBFTLW3244vwH163B9qsQAw4',
-  database: 'food_postgre',
+  connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
