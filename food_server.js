@@ -22,7 +22,8 @@ const pgClient = new Client({
 });
 
 // Connect to the database
-
+console.log("Server port:", port);
+console.log("Database URL:", process.env.DATABASE_URL);
 pgClient.connect()
   .then(() => console.log('Connected to PostgreSQL database.'))
   .catch(err => console.error('Database connection failed:', err));
