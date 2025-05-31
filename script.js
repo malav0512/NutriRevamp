@@ -8,7 +8,7 @@ let foodItems = [];
  // Array to store multiple food items
 
 function fetchCategories() {
-  fetch("http://localhost:3000/categories")
+  fetch("https://nutrirevamp-1.onrender.com/categories")
     .then((response) => response.json())
     .then((data) => {
       const categorySelect = document.getElementById("food-category");
