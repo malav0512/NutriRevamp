@@ -21,6 +21,17 @@ const pgClient = new Client({
   }
 });
 
+app.get('/', async(req, res) => {
+  res.send('Welcome to the NutriRevamp API!');
+});
+
+app.use(cors({
+  origin: 'https://malav0512.github.io',
+  credentials: true
+}));
+
+app.options('*', cors());
+
 // Connect to the database
 console.log("Server port:", port);
 console.log("Database URL:", process.env.DATABASE_URL);
