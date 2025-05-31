@@ -28,7 +28,7 @@ function fetchCategories() {
   document.getElementById("food-category").addEventListener("input", (event) => {
     const query = event.target.value.trim();
   if (query.length > 0) {
-    fetch(`http://localhost:3000/categories?search=${encodeURIComponent(query)}`)
+    fetch(`https://nutrirevamp-1.onrender.com/categories?search=${encodeURIComponent(query)}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch categories");
@@ -64,7 +64,7 @@ function fetchCategories() {
 });
 
   function fetchDescriptions(category) {
-  fetch(`http://localhost:3000/descriptions?category=${category}`)
+  fetch(`https://nutrirevamp-1.onrender.com/descriptions?category=${category}`)
     .then((response) => response.json())
     .then((data) => {
       const descriptionSelect = document.getElementById("food-description");
@@ -93,7 +93,7 @@ function fetchCategories() {
     return;
   }
   // Fetch data from the API
-  fetch(`http://localhost:3000/food?category=${category}&description=${encodeURIComponent(description)}`)
+  fetch(`https://nutrirevamp-1.onrender.com/food?category=${category}&description=${encodeURIComponent(description)}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch data. Please check your inputs or try again later.");
@@ -252,25 +252,24 @@ const button = document.getElementById("nutritional-info");
     console.error("Button with ID 'nutritional-info' not found");
   }
 
-const feedback=document.getElementById('feedback-form');
-    feedback.addEventListener('submit', async (event) => {
+  document.getElementById('feedback-form').addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent the default form submission
-
+  
     const feedback = event.target.feedback.value;
-
+  
     try {
       // Send feedback to the server
-      const response = await fetch('http://127.0.0.1:3000/feedback', {
+      const response = await fetch('https://nutrirevamp-1.onrender.com/feedback', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ feedback }),
       });
-
+  
       if (response.ok) {
         alert('Your feedback submitted successfully!');
-        window.location.href = 'http://127.0.0.1:5500'; // Redirect to the home page
+        window.location.href = 'https://malav0512.github.io/NutriRevamp/'; // Redirect to the homepage
       } else {
         alert('Failed to submit feedback. Please try again.');
       }
@@ -279,4 +278,4 @@ const feedback=document.getElementById('feedback-form');
       alert('An error occurred. Please try again.');
     }
   });
-  });
+});
