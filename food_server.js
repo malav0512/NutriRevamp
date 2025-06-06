@@ -90,11 +90,11 @@ app.get('/food', async(req, res) => {
 
      const searchDescription = `%${description}%`; // Add wildcards for partial matching
      console.log('Category:', category);
-     console.log('Description:', `%${description}%`);
-     console.log('Executing query:', query, [category, `%${description}%`]);
+     console.log('Description:', searchDescription);
+     console.log('Executing query:', query, [category, searchDescription]);
 
      try {
-      const result = await pgClient.query(query, [category, `%${description}%`]);
+      const result = await pgClient.query(query, [category, searchDescription]);
       if (result.rows.length === 0) return res.status(404).json({ message: "No data found." });
       res.json(result.rows);
     } catch (err) {

@@ -587,7 +587,8 @@ html {
 .content-section ul li {
     margin-bottom: 10px;
     font-size: 1rem;
-    list-style-type: disc;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 
