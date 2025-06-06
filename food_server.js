@@ -86,7 +86,7 @@ app.get('/food', async(req, res) => {
     const query = `
         SELECT *
         FROM food
-        WHERE category = $1 AND description LIKE $2`;
+        WHERE category = $1 AND description ILIKE $2`;
 
      const searchDescription = `%${description}%`; // Add wildcards for partial matching
      console.log('Category:', category);
