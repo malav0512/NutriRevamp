@@ -13,9 +13,10 @@ function fetchCategories() {
     .then((data) => {
       const categorySelect = document.getElementById("food-category");
       data.forEach((category) => {
+        const upperCategory = category.category.toUpperCase();
         const option = document.createElement("option");
-        option.value = category.category;
-        option.textContent = category.category;
+        option.value = upperCategory;
+        option.textContent = upperCategory;
         categorySelect.appendChild(option);
       });
     })
