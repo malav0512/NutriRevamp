@@ -44,7 +44,7 @@ app.use(express.json());
 //Code
 app.get("/categories", async(req, res) => {
   const search = req.query.search || "";
-  const query = "SELECT DISTINCT category FROM food WHERE category LIKE $1";
+  const query = "SELECT DISTINCT category FROM food WHERE category ILIKE $1";
   try {
     const result = await pgClient.query(query, [`%${search}%`]);
     res.json(result.rows);
