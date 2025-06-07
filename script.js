@@ -113,7 +113,7 @@ function fetchCategories() {
 
          // Add the food item to the array
         foodItems.push({
-          name: food["Description"] || "N/A",
+          name: food["description"] || "N/A",
           quantity,
           protein,
           carbs,
