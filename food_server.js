@@ -164,11 +164,12 @@ app.post('/calculate-nutrition', async(req, res) => {
     }
   });
 
+const feedbackFilePath = 'C:\\Users\\Dharmen\\Desktop\\Projects\\Project_calorie_meter\\feedback.txt';
+
 // Feedback route
 app.post('/feedback', (req, res) => {
     const feedback = req.body.feedback;
     console.log('Received feedback:', feedback);
-    const feedbackFilePath = path.join(__dirname, 'feedback.txt');
     console.log('Saving feedback to:', feedbackFilePath);
 
     fs.appendFile(feedbackFilePath, `${feedback}\n`, (err) => {
