@@ -181,6 +181,23 @@ app.post('/feedback', (req, res) => {
         res.send('Feedback submitted successfully!');
     });
 });
+app.get('/download-feedback', (req, res) => {
+  const filePath = path.join(__dirname, 'feedback.txt');
+
+  // Check if file exists
+  fs.access(filePath, fs.constants.F_OK, (err) => {
+    if (err) {
+      return res.status(404).send('Feedback file not found.');
+    }
+
+    res.download(filePath, 'feedback.txt', (err) => {
+      if (err) {
+        console.error('Download error:', err);
+        res.status(500).send('Error downloading the file.');
+      }
+    });
+  });
+});
 // Start the server
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
