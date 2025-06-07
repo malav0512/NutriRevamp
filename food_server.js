@@ -164,7 +164,7 @@ app.post('/calculate-nutrition', async(req, res) => {
     }
   });
 
-const feedbackFilePath = 'C:\\Users\\Dharmen\\Desktop\\Projects\\Project_calorie_meter\\feedback.txt';
+const feedbackFilePath = 'C:/Users/Dharmen/Desktop/Projects/Project_calorie_meter/feedback.txt';
 
 // Feedback route
 app.post('/feedback', (req, res) => {
