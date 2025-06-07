@@ -651,10 +651,25 @@ ul li {
 
     .tips-container {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
+            /* Increase gap between tip items */
+        padding: 0 10px;
+            /* Add some horizontal padding */
+        align-items: center;
     }
 
     .tip {
-        max-width: 90%;
+        max-width: 95%;
+            /* Slightly increase max width */
+            padding: 12px 15px;
+            /* Add some padding inside each tip */
+            box-sizing: border-box;
+            /* Ensure padding doesn't break width */
+            border-radius: 8px;
+            /* Optional: round corners for better UI */
+            background-color: #f9f9f9;
+            /* Optional: subtle background for tips */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            /* Optional: subtle shadow */
     }
 }
