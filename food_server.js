@@ -167,14 +167,17 @@ app.post('/calculate-nutrition', async(req, res) => {
 // Feedback route
 app.post('/feedback', (req, res) => {
     const feedback = req.body.feedback;
+    console.log('Received feedback:', feedback);
     const feedbackFilePath = path.join(__dirname, 'feedback.txt');
+    console.log('Saving feedback to:', feedbackFilePath);
 
     fs.appendFile(feedbackFilePath, `${feedback}\n`, (err) => {
         if (err) {
            console.error('Error saving feedback:', err);
         return res.status(500).send('Error saving feedback'); // First response
         } 
-         res.send('Feedback submitted successfully!');
+        console.log('Feedback saved successfully');
+        res.send('Feedback submitted successfully!');
     });
 });
 // Start the server
