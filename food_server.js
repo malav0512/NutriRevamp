@@ -6,52 +6,54 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
-app.use(cors());
-
-
 // Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// PostgreSQL connection
-const pgClient = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-
-app.get('/', async(req, res) => {
-  res.send('Welcome to the NutriRevamp API!');
-});
-
 app.use(cors({
   origin: 'https://malav0512.github.io',
   credentials: true
 }));
-
 app.options('*', cors());
 
-// Connect to the database
-console.log("Server port:", port);
-console.log("Database URL:", process.env.DATABASE_URL);
-pgClient.connect()
-  .then(() => console.log('Connected to PostgreSQL database.'))
-  .catch(err => console.error('Database connection failed:', err));
-
-  
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+
+// ✅ MySQL (Railway) connection
+const connection = mysql.createConnection({
+  host: "maglev.proxy.rlwy.net",
+  user: "root",
+  password: "ZxhzzFyJGovPiBeAgpciduuFAziPGcsh",  // ⚠️ Put in .env
+  database: "railway",
+  port: 18307,
+  ssl: {
+    rejectUnauthorized: true
+  }
+});
+
+connection.connect((err) => {
+  if (err) {
+    console.error("MySQL connection failed:", err);
+    return;
+  }
+  console.log("✅ Connected to Railway MySQL!");
+});
+
+// ✅ Test route
+app.get('/', (req, res) => {
+  res.send('Welcome to the NutriRevamp API!');
+});
 //Code
 app.get("/categories", async(req, res) => {
   const search = req.query.search || "";
-  const query = "SELECT DISTINCT category FROM food WHERE category ILIKE $1";
-  try {
-    const result = await pgClient.query(query, [`%${search}%`]);
-    res.json(result.rows);
-  } catch (err) {
-    console.error("Error fetching categories:", err);
-    res.status(500).json({ error: "Failed to fetch categories" });
-  }
+  const query = "SELECT DISTINCT category FROM food WHERE category ILIKE ?";
+  const values = [`%${search}%`];
+
+  connection.query(query, values, (err, results) => {
+    if (err) {
+      console.error("Error fetching categories:", err);
+      return res.status(500).json({ error: "Failed to fetch categories" });
+    }
+    res.json(results);
+  });
 });
 
 // Endpoint to get descriptions for a specific category
@@ -64,14 +66,14 @@ app.get("/descriptions", async(req, res) => {
     return res.status(400).json({ message: "Category is required." });
   }
 
-  const query = "SELECT DISTINCT description FROM food WHERE category = $1";
-  try {
-    const result = await pgClient.query(query, [category]);
-    res.json(result.rows);
-  } catch (err) {
-    console.error("Database error:", err);
-    res.status(500).json({ message: "Internal server error." });
-  }
+  const query = "SELECT DISTINCT description FROM food WHERE category = ?";
+ connection.query(query, [category], (err, results) => {
+    if (err) {
+      console.error("Database error:", err);
+      return res.status(500).json({ message: "Internal server error." });
+    }
+    res.json(results);
+     });
 });//
 // Endpoint to fetch data by category and description
 app.get('/food', async(req, res) => {
@@ -86,21 +88,25 @@ app.get('/food', async(req, res) => {
     const query = `
         SELECT *
         FROM food
-        WHERE category = $1 AND description ILIKE $2`;
+        WHERE category = ? AND description ILIKE ?`;
 
      const searchDescription = `%${description}%`; // Add wildcards for partial matching
      console.log('Category:', category);
      console.log('Description:', searchDescription);
      console.log('Executing query:', query, [category, searchDescription]);
 
-     try {
-      const result = await pgClient.query(query, [category, searchDescription]);
-      if (result.rows.length === 0) return res.status(404).json({ message: "No data found." });
-      res.json(result.rows);
-    } catch (err) {
-      console.error('Error fetching data:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
+     connection.query(query, [category, searchDescription], (err, results) => {
+    if (err) {
+      console.error("Error fetching data:", err);
+      return res.status(500).json({ error: "Internal Server Error" });
     }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "No data found." });
+    }
+
+    res.json(results);
+  });
   });
 // Endpoint to update food amount
 app.put('/update-food', async(req, res) => {
@@ -112,11 +118,11 @@ app.put('/update-food', async(req, res) => {
 
     const query = `
         UPDATE food 
-        SET amount = $1 
-        WHERE category = $2 AND description = $3`;
+        SET amount = ? 
+        WHERE category = ? AND description = ?`;
 
         try {
-          const result = await pgClient.query(query, [newAmount, category, description]);
+          const result = await mysqlConnection.query(query, [newAmount, category, description]);
           if (result.rowCount === 0) return res.status(404).json({ message: 'No matching record found.' });
           res.json({ message: 'Food amount updated successfully.' });
         } catch (err) {
@@ -140,10 +146,10 @@ app.post('/calculate-nutrition', async(req, res) => {
            Data.Fat.Total Lipid AS fatsPer100g, 
            Data.Kilocalories AS caloriesPer100g
     FROM food 
-    WHERE category = $1 AND description = $2`;
+    WHERE category = ? AND description = ?`;
 
     try {
-      const result = await pgClient.query(query, [category, description]);
+      const result = await mysqlConnection.query(query, [category, description]);
       if (result.rows.length === 0) return res.status(404).json({ message: "No data found." });
   
       const food = result.rows[0];
