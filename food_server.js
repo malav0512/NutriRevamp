@@ -123,7 +123,7 @@ app.put('/update-food', async(req, res) => {
         WHERE category = ? AND description = ?`;
 
         try {
-          const result = await mysqlConnection.query(query, [newAmount, category, description]);
+          const result = await connection.query(query, [newAmount, category, description]);
           if (result.rowCount === 0) return res.status(404).json({ message: 'No matching record found.' });
           res.json({ message: 'Food amount updated successfully.' });
         } catch (err) {
@@ -150,7 +150,7 @@ app.post('/calculate-nutrition', async(req, res) => {
     WHERE category = ? AND description = ?`;
 
     try {
-      const result = await mysqlConnection.query(query, [category, description]);
+      const result = await connection.query(query, [category, description]);
       if (result.rows.length === 0) return res.status(404).json({ message: "No data found." });
   
       const food = result.rows[0];
