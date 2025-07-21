@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 //Code
 app.get("/categories", async(req, res) => {
   const search = req.query.search || "";
-  const query = "SELECT DISTINCT category FROM food WHERE category ILIKE ?";
+  const query = "SELECT DISTINCT category FROM food WHERE category LIKE ?";
   const values = [`%${search}%`];
 
   connection.query(query, values, (err, results) => {
@@ -89,7 +89,7 @@ app.get('/food', async(req, res) => {
     const query = `
         SELECT *
         FROM food
-        WHERE category = ? AND description ILIKE ?`;
+        WHERE category = ? AND description LIKE ?`;
 
      const searchDescription = `%${description}%`; // Add wildcards for partial matching
      console.log('Category:', category);
